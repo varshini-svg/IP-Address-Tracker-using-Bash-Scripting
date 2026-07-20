@@ -1,23 +1,17 @@
 #!/bin/bash
 
 #############################################
-#           Project Configuration
+# Configuration
 #############################################
 
-# API URLs
+# APIs
 IP_API="https://api.ipify.org"
-GEO_API="http://ip-api.com/json"
 
-# Log Files
+# Files
 CURRENT_IP_FILE="./logs/current_ip.txt"
 HISTORY_LOG="./logs/ip_history.log"
 TRACKER_LOG="./logs/tracker.log"
-
-# Report File
 CSV_REPORT="./reports/ip_report.csv"
-
-# Notification Settings
-ENABLE_NOTIFICATION=true
 
 # Time Format
 DATE_FORMAT="+%Y-%m-%d %H:%M:%S"
