@@ -67,6 +67,18 @@ get_public_ip() {
 }
 
 #############################################
+# Get Geolocation Information
+#############################################
+
+get_geolocation() {
+
+    local ip="$1"
+
+    curl -s "$GEO_API/$ip"
+
+}
+
+#############################################
 # Validate IPv4
 #############################################
 
@@ -89,7 +101,7 @@ validate_ip() {
 
 read_previous_ip() {
 
-    if [ -f "$CURRENT_IP_FILE" ]
+    if [ -f "$CURRENT_IP_FILE" ];
     then
         cat "$CURRENT_IP_FILE"
     else
@@ -117,6 +129,6 @@ save_history() {
     local old_ip="$1"
     local new_ip="$2"
 
-    echo "$(date "$DATE_FORMAT") | OLD: $old_ip | NEW: $new_ip | STATUS: CHANGED" >> "$HISTORY_LOG"
+    echo "$(date "$DATE_FORMAT") | OLD: N/A | NEW: $CURRENT_IP | STATUS: FIRST ENTRY | COUNTRY: $COUNTRY | CITY: $CITY | ISP: $ISP" >> "$HISTORY_LOG"
 
 }

@@ -5,7 +5,11 @@
 #############################################
 
 # APIs
+# Public IP API
 IP_API="https://api.ipify.org"
+
+# Geolocation API
+GEO_API="http://ip-api.com/json"
 
 # Files
 CURRENT_IP_FILE="./logs/current_ip.txt"

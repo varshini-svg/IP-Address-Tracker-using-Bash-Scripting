@@ -48,20 +48,71 @@ echo "Current Public IP : $CURRENT_IP"
 echo
 
 #####################################################
+# Fetch Geolocation Information
+#####################################################
+
+print_info "Fetching Geolocation Information..."
+
+GEO_DATA=$(get_geolocation "$CURRENT_IP")
+
+COUNTRY=$(echo "$GEO_DATA" | jq -r '.country')
+REGION=$(echo "$GEO_DATA" | jq -r '.regionName')
+CITY=$(echo "$GEO_DATA" | jq -r '.city')
+ZIP=$(echo "$GEO_DATA" | jq -r '.zip')
+LATITUDE=$(echo "$GEO_DATA" | jq -r '.lat')
+LONGITUDE=$(echo "$GEO_DATA" | jq -r '.lon')
+ISP=$(echo "$GEO_DATA" | jq -r '.isp')
+ORG=$(echo "$GEO_DATA" | jq -r '.org')
+TIMEZONE=$(echo "$GEO_DATA" | jq -r '.timezone')
+
+print_success "Geolocation Retrieved Successfully."
+
+echo
+echo "========== GEOLOCATION =========="
+echo "Country      : $COUNTRY"
+echo "Region       : $REGION"
+echo "City         : $CITY"
+echo "ZIP Code     : $ZIP"
+echo "ISP          : $ISP"
+echo "Organization : $ORG"
+echo "Timezone     : $TIMEZONE"
+echo "Latitude     : $LATITUDE"
+echo "Longitude    : $LONGITUDE"
+echo
+
+#####################################################
 # Compare Current IP with Previous IP
 #####################################################
 
 PREVIOUS_IP=$(read_previous_ip)
+echo "========== DEBUG =========="
+echo "CURRENT_IP_FILE = $CURRENT_IP_FILE"
+
+if [ -f "$CURRENT_IP_FILE" ]; then
+    echo "✓ File exists"
+else
+    echo "✗ File does NOT exist"
+fi
+
+if [ -s "$CURRENT_IP_FILE" ]; then
+    echo "✓ File has data"
+else
+    echo "✗ File is empty"
+fi
+
+echo "PREVIOUS_IP = '$PREVIOUS_IP'"
+echo "==========================="
+echo
 
 # First Execution
-if [ -z "$PREVIOUS_IP" ]
+if [ ! -s "$CURRENT_IP_FILE" ]
 then
 
     print_warning "No previous IP found."
 
     save_current_ip "$CURRENT_IP"
 
-    echo "$(date "$DATE_FORMAT") | OLD: N/A | NEW: $CURRENT_IP | STATUS: FIRST ENTRY" >> "$HISTORY_LOG"
+    echo "$(date "$DATE_FORMAT") | OLD: N/A | NEW: $CURRENT_IP | STATUS: FIRST ENTRY | COUNTRY: $COUNTRY | CITY: $CITY | ISP: $ISP" >> "$HISTORY_LOG"
 
     log_message "First execution. IP saved."
 
@@ -96,4 +147,4 @@ else
 fi
 
 echo
-print_success "Phase 3 Completed Successfully."
+print_success "Phase 4 Completed Successfully."
