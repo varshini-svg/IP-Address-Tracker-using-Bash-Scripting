@@ -156,3 +156,16 @@ $LONGITUDE,\
 $status" >> "$CSV_REPORT"
 
 }
+
+#############################################
+# Send Notification
+#############################################
+
+send_notification() {
+
+    local title="$1"
+    local message="$2"
+
+    bash "$NOTIFY_SCRIPT" "$title" "$message"
+
+}

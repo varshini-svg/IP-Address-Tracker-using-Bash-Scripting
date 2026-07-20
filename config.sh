@@ -16,6 +16,7 @@ CURRENT_IP_FILE="./logs/current_ip.txt"
 HISTORY_LOG="./logs/ip_history.log"
 TRACKER_LOG="./logs/tracker.log"
 CSV_REPORT="./reports/ip_report.csv"
+NOTIFY_SCRIPT="./notifications/notify.sh"
 
 # Time Format
 DATE_FORMAT="+%Y-%m-%d %H:%M:%S"

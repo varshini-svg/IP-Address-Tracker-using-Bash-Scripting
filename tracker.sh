@@ -120,6 +120,11 @@ then
 
     save_csv_report "FIRST ENTRY"
 
+    send_notification \
+"IP Tracker" \
+"Tracking started.
+Current IP: $CURRENT_IP"
+
 # Same IP
 elif [ "$CURRENT_IP" = "$PREVIOUS_IP" ]
 then
@@ -129,6 +134,11 @@ then
     log_message "No IP change."
 
     save_csv_report "NO CHANGE"
+
+    send_notification \
+"IP Tracker" \
+"No IP change detected.
+Current IP: $CURRENT_IP"
 
 # Different IP
 else
@@ -150,10 +160,18 @@ else
 
     save_csv_report "CHANGED"
 
+    send_notification \
+"IP Address Changed!" \
+"Old IP: $PREVIOUS_IP
+
+New IP: $CURRENT_IP"
+
 fi
 
 echo
 print_success "CSV Report Updated Successfully."
 
+print_success "Notification sent Successfully"
+
 echo
-print_success "Phase 5 Completed Successfully."
+print_success "Phase 6 Completed Successfully."
