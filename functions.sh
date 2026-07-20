@@ -132,3 +132,27 @@ save_history() {
     echo "$(date "$DATE_FORMAT") | OLD: N/A | NEW: $CURRENT_IP | STATUS: FIRST ENTRY | COUNTRY: $COUNTRY | CITY: $CITY | ISP: $ISP" >> "$HISTORY_LOG"
 
 }
+
+#############################################
+# Save CSV Report
+#############################################
+
+save_csv_report() {
+
+    local status="$1"
+
+    echo "$(date '+%Y-%m-%d'),\
+$(date '+%H:%M:%S'),\
+$CURRENT_IP,\
+$COUNTRY,\
+$REGION,\
+$CITY,\
+$ZIP,\
+$ISP,\
+$ORG,\
+$TIMEZONE,\
+$LATITUDE,\
+$LONGITUDE,\
+$status" >> "$CSV_REPORT"
+
+}

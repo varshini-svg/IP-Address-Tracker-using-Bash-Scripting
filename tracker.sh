@@ -118,6 +118,8 @@ then
 
     print_success "Current IP stored successfully."
 
+    save_csv_report "FIRST ENTRY"
+
 # Same IP
 elif [ "$CURRENT_IP" = "$PREVIOUS_IP" ]
 then
@@ -125,6 +127,8 @@ then
     print_success "No IP Change Detected."
 
     log_message "No IP change."
+
+    save_csv_report "NO CHANGE"
 
 # Different IP
 else
@@ -144,7 +148,12 @@ else
 
     print_success "History Updated."
 
+    save_csv_report "CHANGED"
+
 fi
 
 echo
-print_success "Phase 4 Completed Successfully."
+print_success "CSV Report Updated Successfully."
+
+echo
+print_success "Phase 5 Completed Successfully."
