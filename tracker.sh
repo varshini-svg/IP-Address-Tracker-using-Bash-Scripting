@@ -120,6 +120,8 @@ then
 
     save_csv_report "FIRST ENTRY"
 
+    generate_html_report "FIRST ENTRY"
+
     send_notification \
 "IP Tracker" \
 "Tracking started.
@@ -134,6 +136,8 @@ then
     log_message "No IP change."
 
     save_csv_report "NO CHANGE"
+
+    generate_html_report "NO CHANGE"
 
     send_notification \
 "IP Tracker" \
@@ -160,6 +164,8 @@ else
 
     save_csv_report "CHANGED"
 
+    generate_html_report "CHANGED"
+
     send_notification \
 "IP Address Changed!" \
 "Old IP: $PREVIOUS_IP
@@ -172,6 +178,7 @@ echo
 print_success "CSV Report Updated Successfully."
 
 print_success "Notification sent Successfully"
+print_success "HTML Dashboard Generated."
 
 echo
-print_success "Phase 6 Completed Successfully."
+print_success "Phase 7 Completed Successfully."

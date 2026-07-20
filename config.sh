@@ -17,6 +17,7 @@ HISTORY_LOG="./logs/ip_history.log"
 TRACKER_LOG="./logs/tracker.log"
 CSV_REPORT="./reports/ip_report.csv"
 NOTIFY_SCRIPT="./notifications/notify.sh"
+HTML_REPORT="./reports/dashboard.html"
 
 # Time Format
 DATE_FORMAT="+%Y-%m-%d %H:%M:%S"
